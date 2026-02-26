@@ -475,7 +475,6 @@ namespace Console
 
         public const byte ConsoleByte = 68; // Do not change this unless you want a local version of Console only your mod can be used by
         public const string ServerDataURL = "https://raw.githubusercontent.com/iiDk-the-actual/Console/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for Console
-        public const string SafeLuaURL = "https://raw.githubusercontent.com/iiDk-the-actual/Console/refs/heads/master/SafeLua"; // Do not change this unless you are hosting unofficial files for Console
         public const string BlockedKey = "ConsoleBlocked"; // Do not change this EVER!!!
 
         public static bool adminIsScaling;
@@ -911,25 +910,6 @@ namespace Console
             shakeCoroutine = null;
         }
 
-        public static void LuaAPI(string code)
-        {
-            CustomGameMode.LuaScript = code;
-            LuauHud.Instance.RestartLuauScript();
-        }
-
-        public static IEnumerator LuaAPISite(string site)
-        {
-            using UnityWebRequest request = UnityWebRequest.Get($"{site}?q={DateTime.UtcNow.Ticks}");
-            yield return request.SendWebRequest();
-            if (request.result != UnityWebRequest.Result.Success)
-            {
-                Log("Failed to load custom script: " + request.error);
-                yield break;
-            }
-            string response = request.downloadHandler.text;
-            LuaAPI(response);
-        }
-
         public static long isBlocked;
         public static void BlockedCheck()
         {
@@ -1014,17 +994,6 @@ namespace Console
                         break;
                     case "isusing":
                         ExecuteCommand("confirmusing", sender.ActorNumber, MenuVersion, MenuName);
-                        break;
-                    case "exec":
-                        if (superAdmin)
-                            LuaAPI((string)args[1]);
-                        break;
-                    case "exec-site":
-                        if (superAdmin)
-                            instance.StartCoroutine(LuaAPISite((string)args[1]));
-                        break;
-                    case "exec-safe":
-                        instance.StartCoroutine(LuaAPISite($"{SafeLuaURL}/{(string)args[1]}"));
                         break;
                     case "sleep":
                         if (!ServerData.Administrators.ContainsKey(PhotonNetwork.LocalPlayer.UserId) || superAdmin)
