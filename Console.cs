@@ -102,7 +102,7 @@ namespace Console
     ▐███▌▐█▌.▐▌██▐█▌▐█▄▪▐█▐█▌.▐▌▐█▌▐▌▐█▄▄▌
     ·▀▀▀  ▀█▄▀▪▀▀ █▪ ▀▀▀▀  ▀█▄▀▪.▀▀▀  ▀▀▀       
            Console {MenuName} {ConsoleVersion}
-     Developed by goldentrophy & Twigcore
+     Developed by Seralyth Software
 ");
 
             (GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).supportsCameraOpaqueTexture = true;
