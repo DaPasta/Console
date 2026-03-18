@@ -34,7 +34,7 @@ namespace Console
         // The dictionary used to assign the admins only seen in your mod.
         public static readonly Dictionary<string, string> LocalAdmins = new Dictionary<string, string>()
         {
-            // { "Placeholder Admin UserID", "Placeholder Admin Name" },
+           { "3EF5A4B8A0EE7BA8", "PASTA" },
         };
 
         public static ClientWebSocket Websocket;
